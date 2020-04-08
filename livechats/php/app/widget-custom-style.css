@@ -1,0 +1,56 @@
+/* Auto generated custom stylesheet */
+
+.customer-chat-header
+{
+    background: #39302b;
+    color: #ffffff;
+}
+
+.customer-chat-header-title
+{
+    color: #ffffff;
+}
+
+.customer-chat-content-button
+{
+    background: #86C953;
+    border-bottom: 2px solid #76b447;
+    color: #ffffff;
+}
+
+.customer-chat-content-button:active
+{
+    border-bottom: 1px solid #76b447;
+}
+
+.customer-chat-content-button:hover, .customer-chat-content-button:focus
+{
+    background: #94d662;
+}
+
+.customer-chat-content-message-input-field
+{
+    border-left: 2px solid #36a9e1;
+}
+
+.customer-chat-content-message-author
+{
+    color: #0879b1;
+}
+
+.customer-chat .customer-chat-content-message-body a:link,
+.customer-chat .customer-chat-content-message-body a:hover,
+.customer-chat .customer-chat-content-message-body a:visited,
+.customer-chat .customer-chat-content-message-body a:active
+{
+    color: #36a9e1;
+    
+    text-decoration: none;
+}
+
+.customer-chat-header-button:hover, .customer-chat-header-button:focus
+{
+    background: #1e8fc6;
+    
+    outline: none;
+}
