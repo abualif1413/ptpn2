@@ -148,6 +148,7 @@
 	            							hasil += "<th>Brd (Kg)</th>";
 	            							hasil += "<th>TBS (Realisasi Kg)</th>";
 	            							hasil += "<th>Brd (Realisasi Kg)</th>";
+	            							hasil += "<th>Alat</th>";
 	            						hasil += "</tr>";
 	            					hasil += "</thead>";
 	            					hasil += "<tbody>";
@@ -181,6 +182,11 @@
 	            								hasil += "<br />";
 	            								hasil += "Rp. " + accounting.format(v.hasil_p_brd, 2);
 	            							hasil += "</td>";
+	            							hasil += "<td>";
+	            								hasil += "<strong>" + v.nama_alat + "</strong>";
+	            								hasil += "<br />";
+	            								hasil += "Rp. " + accounting.format(v.premi_alat, 2);
+	            							hasil += "</td>";
 	            						hasil += "</tr>";
             		} else if(v.urutan == 3) {
             						hasil += "</tbody>";
@@ -204,25 +210,27 @@
 		    	});
 		    	
     			$.each(hasil_kg_per_pemanen, function(i,v) {
-    				var diceklis = 0;
-    				$(".chk_proses").each(function() {
-    					var id_pemanen = $(this).attr("id_pemanen");
-    					var id_blok = $(this).attr("id_blok");
-    					var tanggal = $(this).attr("tanggal");
-    					if(v.id_pemanen == id_pemanen && v.id_blok == id_blok && v.tanggal == tanggal && $(this).prop("checked") == true) {
-    						diceklis = 1;
-    					}
-    				});
-    				if(diceklis == 1) {
-    					$.ajax({
-				            type  		: 'POST',
-				            url   		: '<?php echo base_url()?>KgPanenPerPemanen/go_simpan',
-				            async 		: false,
-				            dataType	: 'text',
-				            data		: {data_proses: JSON.stringify(v)},
-				            success 	: function(r){
-				            }
-				        });
+    				if(v.urutan == 2) {
+    					var diceklis = 0;
+	    				$(".chk_proses").each(function() {
+	    					var id_pemanen = $(this).attr("id_pemanen");
+	    					var id_blok = $(this).attr("id_blok");
+	    					var tanggal = $(this).attr("tanggal");
+	    					if(v.id_pemanen == id_pemanen && v.id_blok == id_blok && v.tanggal == tanggal && $(this).prop("checked") == true) {
+	    						diceklis = 1;
+	    					}
+	    				});
+	    				if(diceklis == 1) {
+	    					$.ajax({
+					            type  		: 'POST',
+					            url   		: '<?php echo base_url()?>KgPanenPerPemanen/go_simpan',
+					            async 		: false,
+					            dataType	: 'text',
+					            data		: {data_proses: JSON.stringify(v)},
+					            success 	: function(r){
+					            }
+					        });
+	    				}
     				}
     			});
     			

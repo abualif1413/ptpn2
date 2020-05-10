@@ -24,17 +24,34 @@ class KgPanenPerPemanen extends MY_Controller {
 	}
 
     public function afdeling() {
-        $this->load->database();
-        $afdeling_data = array();
-        $ds_kebun = $this->db->query("
-            SELECT DISTINCT
+    	$token = $this->session->userdata('token');
+		$role = $this->session->userdata('role');
+		
+		$sql_kebun = "
+			SELECT DISTINCT
                 kbn.id, kbn.nama_kebun
             FROM
                 tbl_kebun kbn
                 INNER JOIN tbl_afdeling afd ON kbn.id = afd.id_kebun
             ORDER BY
                 nama_kebun ASC
-        ");
+		";
+		if(strtolower($role) != "s_admin") {
+			$sql_kebun = "
+				SELECT DISTINCT
+                	kbn.id, kbn.nama_kebun
+	            FROM
+	                tbl_kebun kbn
+	                INNER JOIN tbl_afdeling afd ON kbn.id = afd.id_kebun
+	                INNER JOIN tbl_kerani_kcs kcs ON kbn.id = kcs.id_kebun AND kcs.token = '" . $token . "'
+	            ORDER BY
+	                nama_kebun ASC
+			";
+		}
+		
+        $this->load->database();
+        $afdeling_data = array();
+        $ds_kebun = $this->db->query($sql_kebun);
         foreach($ds_kebun->result() as $row_kebun) {
             $temp_kebun = array(
                 "id" => $row_kebun->id,
@@ -42,6 +59,19 @@ class KgPanenPerPemanen extends MY_Controller {
                 "afdeling" => array()
             );
             $sql_afdeling = "SELECT id, nama_afdeling FROM tbl_afdeling WHERE id_kebun = '" . $row_kebun->id . "' ORDER BY nama_afdeling ASC";
+            if(strtolower($role) != "s_admin") {
+            	$sql_afdeling = "
+            		SELECT
+						afd.id, afd.nama_afdeling
+					FROM
+						tbl_afdeling afd
+						INNER JOIN tbl_kerani_kcs kcs ON afd.id = kcs.id_afdeling AND kcs.token = '" . $token . "'
+					WHERE
+						afd.id_kebun = '" . $row_kebun->id . "'
+					ORDER BY
+						afd.nama_afdeling ASC
+            	";
+            }
             $ds_afdeling = $this->db->query($sql_afdeling);
             foreach($ds_afdeling->result() as $row_afdeling) {
                 $temp_afdeling = array(
@@ -211,7 +241,7 @@ class KgPanenPerPemanen extends MY_Controller {
     	$ds_hasil = $this->db->query("
     		SELECT
 				1 AS urutan, pemanen.id AS id_pemanen, MAX(pemanen.nama_pemanen) AS nama_pemanen,
-				0 AS id_blok, '' AS blok, 0 AS bt,
+				0 AS id_blok, '' AS blok, 0 AS bt, '' AS nama_alat, 0 AS premi_alat,
 				SUM(panen.jmlh_panen) AS jmlh_panen, SUM(panen.jmlh_brondolan) AS jmlh_brondolan,
 				0 AS libur, 0 AS sudah_proses
 			FROM
@@ -228,7 +258,7 @@ class KgPanenPerPemanen extends MY_Controller {
 			
 			SELECT
 				2 AS urutan, pemanen.id AS id_pemanen, MAX(pemanen.nama_pemanen) AS nama_pemanen,
-				panen.blok AS id_blok, MAX(blok.blok) AS blok, MAX(blok.bt) AS bt,
+				panen.blok AS id_blok, MAX(blok.blok) AS blok, MAX(blok.bt) AS bt, MAX(alat.nama_alat) AS nama_alat, MAX(alat.premi_alat) AS premi_alat,
 				SUM(panen.jmlh_panen) AS jmlh_panen, SUM(panen.jmlh_brondolan) AS jmlh_brondolan,
 				MAX(CASE
 					WHEN libur.tanggal_libur IS NOT NULL THEN 1
@@ -240,6 +270,7 @@ class KgPanenPerPemanen extends MY_Controller {
 				LEFT JOIN tbl_panen panen ON pemanen.id = panen.id_pemanen AND panen.tanggal = '" . $this->input->post("tanggal") . "'
 				LEFT JOIN tbl_blok blok ON panen.blok = blok.id
 				LEFT JOIN tbl_libur libur ON libur.tanggal_libur = '" . $this->input->post("tanggal") . "' OR DAYOFWEEK('" . $this->input->post("tanggal") . "') = 1
+				LEFT JOIN tbl_alat alat ON panen.id_alat = alat.id
 				LEFT JOIN tbl_hasil_kg_per_pemanen proses ON pemanen.id = proses.id_pemanen AND panen.blok = proses.id_blok AND proses.tanggal = '" . $this->input->post("tanggal") . "'
 			WHERE
 				mandor.id = '" . $this->input->post("id_mandor") . "'
@@ -250,7 +281,7 @@ class KgPanenPerPemanen extends MY_Controller {
 			
 			SELECT
 				3 AS urutan, pemanen.id AS id_pemanen, MAX(pemanen.nama_pemanen) AS nama_pemanen,
-				0 AS id_blok, '' AS blok, 0 AS bt,
+				0 AS id_blok, '' AS blok, 0 AS bt, '' AS nama_alat, 0 AS premi_alat,
 				SUM(panen.jmlh_panen) AS jmlh_panen, SUM(panen.jmlh_brondolan) AS jmlh_brondolan,
 				0 AS libur, 0 AS sudah_proses
 			FROM
@@ -373,19 +404,19 @@ class KgPanenPerPemanen extends MY_Controller {
 			INSERT INTO tbl_hasil_kg_per_pemanen(
 				tanggal,
 				id_pemanen, id_blok, bt,
-				jmlh_panen, jmlh_brondolan,
+				jmlh_panen, jmlh_brondolan, nama_alat,
 				libur,
 				kg_tbs, kg_brd,
 				tbs_p1, tbs_p2, tbs_p3, tbs_p4,
-				brd_p
+				brd_p, premi_alat
 			) VALUES(
 				'" . $data_proses["tanggal"] . "',
 				'" . $data_proses["id_pemanen"] . "', '" . $data_proses["id_blok"] . "', '" . $data_proses["bt"] . "',
-				'" . $data_proses["jmlh_panen"] . "', '" . $data_proses["jmlh_brondolan"] . "',
+				'" . $data_proses["jmlh_panen"] . "', '" . $data_proses["jmlh_brondolan"] . "', '" . $data_proses["nama_alat"] . "',
 				'" . $data_proses["libur"] . "',
 				'" . $data_proses["kg_tbs"] . "', '" . $data_proses["kg_brd"] . "',
 				'" . $data_proses["hasil_p"]["p1"] . "', '" . $data_proses["hasil_p"]["p2"] . "', '" . $data_proses["hasil_p"]["p3"] . "', '" . $data_proses["hasil_p"]["p4"] . "',
-				'" . $data_proses["hasil_p_brd"] . "'
+				'" . $data_proses["hasil_p_brd"] . "', '" . $data_proses["premi_alat"] . "'
 			)
 		");
 		$this->db->close();

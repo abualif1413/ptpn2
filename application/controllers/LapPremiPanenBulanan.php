@@ -62,7 +62,7 @@ class LapPremiPanenBulanan extends MY_Controller {
 					// Menghitung premi
 					$sql = "
 						SELECT
-							SUM(hasil.tbs_p1 + hasil.tbs_p2 + hasil.tbs_p3 + hasil.tbs_p4 + hasil.brd_p) AS total_premi
+							SUM(hasil.tbs_p1 + hasil.tbs_p2 + hasil.tbs_p3 + hasil.tbs_p4 + hasil.brd_p + hasil.premi_alat) AS total_premi
 						FROM
 							tbl_hasil_kg_per_pemanen hasil
 						WHERE

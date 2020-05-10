@@ -14,7 +14,7 @@
 			margin-right: 0.5cm;
 			margin-left: 0.5cm;
 			margin-bottom: 0.5cm;
-			size: 30cm 60cm landscape;
+			size: legal landscape;
 		}
 		.laporan { border-collapse: collapse; font-size: 9pt; }
 		.laporan th, td { border-right: solid 1px #d8e3ff; padding: 1px 2px; border-left: solid 1px #d8e3ff; padding: 1px 2px; }
@@ -28,17 +28,17 @@
     <h3 style="padding: 0; margin: 0; text-align: center;">Laporan Premi Panen Bulanan</h3>
     <h3 style="padding: 0; margin: 0; text-align: center;">Bulan : <?php echo $bulan . " " . $tahun; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mandor : <?php echo $nama_mandor; ?></h3>
     <br />
-    <table cellspacing="0" cellpadding="0" width="100%" class="laporan">
+    <table cellspacing="0" cellpadding="0" width="100%" class="laporan" style="font-size: 6.5pt; font-family: sans-serif;">
     	<thead>
     		<tr>
-    			<th width="30px">No.</th>
+    			<th width="5px">No.</th>
     			<th>Nama Pemanen</th>
     			<?php
     				foreach ($tanggal_format as $tgl) {
-						echo "<th width='60px'>" . $tgl . "</th>";
+						echo "<th align='right' width='32px'>" . substr($tgl, 0, 2) . "</th>";
 					}
     			?>
-    			<th width="60px">Total</th>
+    			<th width="32px" align="right">Total</th>
     		</tr>
     	</thead>
     	<tbody>
@@ -50,9 +50,9 @@
 						$total = 0;
 						foreach ($data["bulanan"] as $premi) {
 							$total += $premi;
-							echo "<td align='right'>" . number_format($premi, 2, ".", ",") . "</td>";
+							echo "<td align='right'>" . number_format($premi, 0, ".", ",") . "</td>";
 						}
-						echo "<td align='right' style='font-weight: bold'>" . number_format($total, 2, ".", ",") . "</td>";
+						echo "<td align='right' style='font-weight: bold'>" . number_format($total, 0, ".", ",") . "</td>";
 					echo "</tr>";
 				}
     		?>

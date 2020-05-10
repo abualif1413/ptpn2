@@ -28,25 +28,25 @@
     <h3 style="padding: 0; margin: 0; text-align: center;">Laporan Premi Panen Harian</h3>
     <h3 style="padding: 0; margin: 0; text-align: center;">Tanggal : <?php echo $tanggal; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mandor : <?php echo $nama_mandor; ?></h3>
     <br />
-    <table cellspacing="0" cellpadding="0" width="100%" class="laporan">
+    <table cellspacing="0" cellpadding="0" width="100%" class="laporan" style="font-family: sans-serif;">
     	<thead>
     		<tr>
     			<th rowspan="2" width="30px">No.</th>
     			<th rowspan="2">Nama Pemanen</th>
     			<th rowspan="2">Blok</th>
-    			<th rowspan="2">Basis Tugas</th>
-    			<th rowspan="2" width="80px">Kg. TBS</th>
-    			<th rowspan="2" width="80px">Kg. Brd</th>
-    			<th colspan="5">Premi TBS</th>
-    			<th rowspan="2" width="80px">Premi BRD</th>
-    			<th rowspan="2" width="80px">Total Premi</th>
+    			<th rowspan="2" align="right">BT</th>
+    			<th rowspan="2" align="right" width="80px">Kg. TBS</th>
+    			<th rowspan="2" align="right" width="80px">Kg. Brd</th>
+    			<th colspan="4" align="right">Premi TBS</th>
+    			<th rowspan="2" width="80px" align="right">Premi BRD</th>
+    			<th rowspan="2" width="80px" align="right">Premi Alat</th>
+    			<th rowspan="2" width="80px" align="right">Total Premi</th>
     		</tr>
     		<tr>
-    			<th width="80px">P0</th>
-    			<th width="80px">P1</th>
-    			<th width="80px">P2</th>
-    			<th width="80px">P3</th>
-    			<th width="80px">Total</th>
+    			<th width="80px" align="right">P1</th>
+    			<th width="80px" align="right">P2</th>
+    			<th width="80px" align="right">P3</th>
+    			<th width="80px" align="right">Total</th>
     		</tr>
     	</thead>
     	<tbody>
@@ -59,12 +59,12 @@
 						echo "<td align='right'>" . $data["bt"] . "</td>";
 						echo "<td align='right'>" . number_format($data["kg_tbs"], 2) . "</td>";
 						echo "<td align='right'>" . number_format($data["kg_brd"], 2) . "</td>";
-						echo "<td align='right'>" . number_format($data["tbs_p1"], 2) . "</td>";
-						echo "<td align='right'>" . number_format($data["tbs_p2"], 2) . "</td>";
+						echo "<td align='right'>" . number_format($data["tbs_p1"] + $data["tbs_p2"], 2) . "</td>";
 						echo "<td align='right'>" . number_format($data["tbs_p3"], 2) . "</td>";
 						echo "<td align='right'>" . number_format($data["tbs_p4"], 2) . "</td>";
 						echo "<td align='right'>" . number_format($data["hasil_tbs_p"], 2) . "</td>";
 						echo "<td align='right'>" . number_format($data["brd_p"], 2) . "</td>";
+						echo "<td align='right'>" . number_format($data["premi_alat"], 2) . "</td>";
 						echo "<td align='right'>" . number_format($data["total_premi"], 2) . "</td>";
 					echo "</tr>";
 				}

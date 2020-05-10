@@ -33,8 +33,8 @@ class LapPremiPanenHarian extends MY_Controller {
 					pemanen.id AS id_pemanen, mandor.nama_lengkap AS nama_mandor, pemanen.nama_pemanen, blok.blok,
 					hasil.bt, hasil.kg_tbs, hasil.kg_brd,
 					hasil.tbs_p1, hasil.tbs_p2, hasil.tbs_p3, hasil.tbs_p4, (hasil.tbs_p1 + hasil.tbs_p2 + hasil.tbs_p3 + hasil.tbs_p4) AS hasil_tbs_p,
-					hasil.brd_p,
-					(hasil.tbs_p1 + hasil.tbs_p2 + hasil.tbs_p3 + hasil.tbs_p4 + hasil.brd_p) AS total_premi
+					hasil.brd_p, hasil.premi_alat,
+					(hasil.tbs_p1 + hasil.tbs_p2 + hasil.tbs_p3 + hasil.tbs_p4 + hasil.brd_p + hasil.premi_alat) AS total_premi
 				FROM
 					tbl_pemanen pemanen
 					INNER JOIN tbl_mandor mandor ON pemanen.id_mandor = mandor.token
