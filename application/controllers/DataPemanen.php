@@ -82,6 +82,7 @@ class DataPemanen extends MY_Controller {
                         'id_mandor'=>$id_mandor,
                         'barcode'=>$this->input->post('barcode'),
                         'img_barcode'=>$qr_image,
+                        'no_sap'=>$this->input->post('no_sap'),
                         'nama_pemanen'=>$this->input->post('nama_pemanen'),
                         'id_kerani_askep'=>$id_kerani_askep,
                         'id_kebun'=>$id_kebun,
@@ -124,7 +125,7 @@ class DataPemanen extends MY_Controller {
 			extract($user);
             $data = array();
             $orderBy = array(null,"tbl_pemanen.id","tbl_pemanen.nama_pemanen","tbl_kebun.nama_kebun","tbl_afdeling.nama_afdeling","tbl_pemanen.barcode","tbl_pemanen.keterangan","tbl_mandor.nama_lengkap");
-            $search = array("tbl_mandor.nama_lengkap","tbl_kebun.nama_kebun","tbl_afdeling.nama_afdeling","tbl_pemanen.nama_pemanen","tbl_pemanen.barcode");
+            $search = array("tbl_mandor.nama_lengkap","tbl_kebun.nama_kebun","tbl_afdeling.nama_afdeling","tbl_pemanen.nama_pemanen","tbl_pemanen.barcode", "tbl_pemanen.no_sap");
             $select = array("tbl_pemanen.*","tbl_kebun.nama_kebun","tbl_afdeling.nama_afdeling","tbl_mandor.nama_lengkap","tbl_kerani_kcs.nama_lengkap as keranikcs");
             $join = array(
                 array('tbl_kebun','tbl_kebun.id=tbl_pemanen.id_kebun'),
@@ -204,6 +205,7 @@ class DataPemanen extends MY_Controller {
                     $field= array(
                         'barcode'=>$this->input->post('barcode'),
                         'nama_pemanen'=>$this->input->post('nama_pemanen'),
+                        'no_sap'=>$this->input->post('no_sap'),
                         'id_kebun'=>$id_kebun,
                         'id_afdeling'=>$id_afdeling,
                         'keterangan'=>$this->input->post('keterangan'),
@@ -213,6 +215,7 @@ class DataPemanen extends MY_Controller {
                     $field= array(
                         'barcode'=>$this->input->post('barcode'),
                         'nama_pemanen'=>$this->input->post('nama_pemanen'),
+                        'no_sap'=>$this->input->post('no_sap'),
                         'id_kebun'=>$id_kebun,
                         'id_afdeling'=>$id_afdeling,
                         'keterangan'=>$this->input->post('keterangan'),

@@ -14,6 +14,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>No. SAP</th>
                         <th>K.Askep</th>
                         <th>K.Kcs</th>
                         <th>Nama Mandor</th>
@@ -53,6 +54,11 @@
             <input type="email" class="form-control" name="email">
             <input type="hidden" name="id">
             <input type="hidden" name="token">
+          </div>
+
+          <div class="form-group">
+            <label for="sap">No. SAP:</label>
+            <input type="text" class="form-control" name="no_sap">
           </div>
 
           <div class="form-group">
@@ -225,6 +231,7 @@
                     searchable:false,
                     orderable:false,
                 },
+                { data: 'no_sap' },
                 { data:'keraniaskep' },
                 { data:'keranikcs' },
                 { data:'nama_lengkap' },
@@ -265,6 +272,7 @@
               $('input[name=token]').val(data.token);
               $('input[name=id]').val(data.id);
               $('input[name=email]').val(data.email);
+              $('input[name=no_sap]').val(data.no_sap);
               $('input[name=password]').val(data.password);
               $('input[name=nama_lengkap]').val(data.nama_lengkap);
               $('select[name=role]').val(data.role);

@@ -14,6 +14,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>No. SAP</th>
                         <th>K.Askep</th>
                         <th>K.Kcs</th>
                         <th>Nama Mandor</th>
@@ -56,7 +57,12 @@
           </div>
 
           <div class="form-group">
-            <label for="Username">Nama_Lengkap:</label>
+            <label for="Username">No. SAP:</label>
+            <input type="text" class="form-control" name="no_sap">
+          </div>
+
+          <div class="form-group">
+            <label for="Username">Nama Lengkap:</label>
             <input type="text" class="form-control" name="nama_lengkap">
           </div>
 
@@ -233,6 +239,7 @@
                     searchable:false,
                     orderable:false,
                 },
+                { data: 'no_sap' }, 
                 { data:'keraniaskep' },
                 { data:'keranikcs' },
                 { data:'nama_lengkap' },
@@ -273,10 +280,12 @@
               $('input[name=token]').val(data.token);
               $('input[name=id]').val(data.id);
               $('input[name=email]').val(data.email);
+              $('input[name=no_sap]').val(data.no_sap);
               $('input[name=password]').val(data.password);
               $('input[name=nama_lengkap]').val(data.nama_lengkap);
               $('select[name=role]').val(data.role);
               $('select[name=id_kerani_askep]').val(data.id_kerani_askep);
+              $('select[name=id_kerani_kcs]').val(data.id_kerani_kcs);
               $('select[name=status]').val(data.status);
               $('select[name=id_kebun]').val(data.id_kebun);
               $("#afdeling").append("<option value='"+data.id_afdeling+"'>"+data.nama_afdeling+"</option>");

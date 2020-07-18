@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+error_reporting(0);
+
 class Blok extends MY_Controller {
 	
 	public function __construct(){
@@ -86,7 +88,7 @@ class Blok extends MY_Controller {
     {   
         if(self::isPost()){
             $data = array();
-            $orderBy = array(null,"tbl_kebun.nama_kebun");
+            $orderBy = array(null,"tbl_kebun.nama_kebun", "tbl_afdeling.nama_afdeling", "tbl_blok.blok");
             $search = array("tbl_kebun.nama_kebun","tbl_afdeling.nama_afdeling");
             $select = array(
                 "tbl_blok.*",

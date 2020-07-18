@@ -39,6 +39,7 @@ class Keraniaskep extends MY_Controller {
             $search = array(
                 "tbl_kerani_askep.nama_lengkap",
                 "tbl_kerani_askep.email",
+                "tbl_kerani_askep.no_sap",
                 "tbl_kebun.nama_kebun",
                 "tbl_jabatan.jabatan",
             );
@@ -94,6 +95,7 @@ class Keraniaskep extends MY_Controller {
                     $token=random_string('numeric',5);
                     $field= array(
                         'email'=>$this->input->post('email'),
+                        'no_sap'=>$this->input->post('no_sap'),
                         'nama_lengkap'=>$this->input->post('nama_lengkap'),
                         'id_kebun'=>$this->input->post('id_kebun'),
                         'id_jabatan'=>'1',
@@ -158,6 +160,7 @@ class Keraniaskep extends MY_Controller {
                     
                     $field= array(
                         'email'=>$this->input->post('email'),
+                        'no_sap'=>$this->input->post('no_sap'),
                         'nama_lengkap'=>$this->input->post('nama_lengkap'),
                         'id_kebun'=>$this->input->post('id_kebun'),
                         'photo'=>$datafoto['file_name'],
@@ -173,6 +176,7 @@ class Keraniaskep extends MY_Controller {
                     
                     $field= array(
                         'email'=>$this->input->post('email'),
+                        'no_sap'=>$this->input->post('no_sap'),
                         'nama_lengkap'=>$this->input->post('nama_lengkap'),
                         'id_kebun'=>$this->input->post('id_kebun'),
                     );

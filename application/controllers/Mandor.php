@@ -57,6 +57,7 @@ class Mandor extends MY_Controller {
                 "tbl_kerani_kcs.nama_lengkap",
                 "tbl_mandor.nama_lengkap",
                 "tbl_mandor.email",
+                "tbl_mandor.no_sap",
                 "tbl_kebun.nama_kebun",
                 "tbl_afdeling.nama_afdeling",
             );
@@ -64,6 +65,7 @@ class Mandor extends MY_Controller {
             $select = array(
                 "tbl_mandor.id",
                 "tbl_mandor.email",
+                "tbl_mandor.no_sap",
                 "tbl_mandor.token",
                 "tbl_mandor.nama_lengkap",
                 "tbl_kerani_kcs.nama_lengkap as keranikcs",
@@ -128,6 +130,7 @@ class Mandor extends MY_Controller {
                     $token=random_string('numeric',5);
                     $field= array(
                         'email'=>$this->input->post('email'),
+                        'no_sap'=>$this->input->post('no_sap'),
                         'nama_lengkap'=>$this->input->post('nama_lengkap'),
                         'id_kerani_askep'=>$this->input->post('id_kerani_askep'),
                         'id_kerani_kcs'=>$this->input->post('id_kerani_kcs'),
@@ -201,6 +204,7 @@ class Mandor extends MY_Controller {
                     $field= array(
                         'email'=>$this->input->post('email'),
                         'nama_lengkap'=>$this->input->post('nama_lengkap'),
+                        'no_sap'=>$this->input->post('no_sap'),
                         'id_kerani_askep'=>$this->input->post('id_kerani_askep'),
                         'id_kebun'=>$this->input->post('id_kebun'),
                         'id_afdeling'=>$this->input->post('id_afdeling'),
@@ -217,6 +221,7 @@ class Mandor extends MY_Controller {
                     $field= array(
                         'email'=>$this->input->post('email'),
                         'nama_lengkap'=>$this->input->post('nama_lengkap'),
+                        'no_sap'=>$this->input->post('no_sap'),
                         'id_kerani_askep'=>$this->input->post('id_kerani_askep'),
                         'id_kebun'=>$this->input->post('id_kebun'),
                         'id_afdeling'=>$this->input->post('id_afdeling'),
@@ -244,7 +249,9 @@ class Mandor extends MY_Controller {
             "tbl_mandor.id",
             "tbl_mandor.token",
             "tbl_mandor.email",
+            "tbl_mandor.no_sap",
             "tbl_mandor.id_kerani_askep",
+            "tbl_mandor.id_kerani_kcs",
             "tbl_mandor.nama_lengkap",
             "tbl_jabatan.jabatan",
             "tbl_mandor.id_kebun",

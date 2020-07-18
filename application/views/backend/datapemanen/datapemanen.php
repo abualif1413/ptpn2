@@ -15,6 +15,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>No. SAP</th>
                         <th>Kerani KCS</th>
                         <th>Mandor Kebun</th>
                         <th>Photo Pemanen</th>
@@ -50,16 +51,21 @@
       <div class="modal-body">
         <?php echo form_open('', array('id' => 'myForm')); ?>
           <div class="row">
-          <div class="form-group col-md-6">
-            <label for="Pemanen">Barcode:</label>
-            <input type="text" class="form-control" name="barcode" readonly>
-            <input type="hidden" name="id">
+            <div class="form-group col-md-6">
+              <label for="Pemanen">Barcode:</label>
+              <input type="text" class="form-control" name="barcode" readonly>
+              <input type="hidden" name="id">
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="Pemanen">Nama Pemanen:</label>
+              <input type="text" class="form-control" name="nama_pemanen">
+            </div>
           </div>
 
-          <div class="form-group col-md-6">
-            <label for="Pemanen">Nama Pemanen:</label>
-            <input type="text" class="form-control" name="nama_pemanen">
-          </div>
+          <div class="form-group">
+            <label for="Photo">No. SAP:</label>
+            <input type="text" class="form-control" name="no_sap">
           </div>
 
           <div class="form-group">
@@ -211,6 +217,7 @@
                     searchable:false,
                     orderable:false,
                 },
+                { data: 'no_sap' },
                 { data:'keranikcs' },
                 { data:'nama_lengkap' },
                 { data:'image' },
@@ -250,6 +257,7 @@
               $('input[name=id]').val(data.id);
               $('input[name=barcode]').val(data.barcode);
               $('input[name=nama_pemanen]').val(data.nama_pemanen);
+              $('input[name=no_sap]').val(data.no_sap);
               $('textarea[name=keterangan]').val(data.keterangan);
               $("#img2").attr("src","assets/backend/img/photo/"+data.photo+"").fadeIn();
           }

@@ -40,6 +40,7 @@ class Keranikcs extends MY_Controller {
             $search = array(
                 "tbl_kerani_kcs.nama_lengkap",
                 "tbl_kerani_kcs.email",
+                "tbl_kerani_kcs.no_sap",
                 "tbl_kerani_askep.nama_lengkap",
                 "tbl_kebun.nama_kebun",
                 "tbl_afdeling.nama_afdeling",
@@ -48,6 +49,7 @@ class Keranikcs extends MY_Controller {
             $select = array(
                 "tbl_kerani_kcs.id",
                 "tbl_kerani_kcs.email",
+                "tbl_kerani_kcs.no_sap",
                 "tbl_kerani_kcs.token",
                 "tbl_kerani_kcs.nama_lengkap",
                 "tbl_jabatan.jabatan",
@@ -110,6 +112,7 @@ class Keranikcs extends MY_Controller {
                     $token=random_string('numeric',5);
                     $field= array(
                         'email'=>$this->input->post('email'),
+                        'no_sap'=>$this->input->post('no_sap'),
                         'nama_lengkap'=>$this->input->post('nama_lengkap'),
                         'id_kerani_askep'=>$this->input->post('id_kerani_askep'),
                         'id_kebun'=>$this->input->post('id_kebun'),
@@ -178,6 +181,7 @@ class Keranikcs extends MY_Controller {
                     
                     $field= array(
                         'email'=>$this->input->post('email'),
+                        'no_sap'=>$this->input->post('no_sap'),
                         'nama_lengkap'=>$this->input->post('nama_lengkap'),
                         'id_kerani_askep'=>$this->input->post('id_kerani_askep'),
                         'id_kebun'=>$this->input->post('id_kebun'),
@@ -194,6 +198,7 @@ class Keranikcs extends MY_Controller {
                 }else{
                     $field= array(
                         'email'=>$this->input->post('email'),
+                        'no_sap'=>$this->input->post('no_sap'),
                         'nama_lengkap'=>$this->input->post('nama_lengkap'),
                         'id_kerani_askep'=>$this->input->post('id_kerani_askep'),
                         'id_kebun'=>$this->input->post('id_kebun'),
@@ -222,6 +227,7 @@ class Keranikcs extends MY_Controller {
             "tbl_kerani_kcs.id",
             "tbl_kerani_kcs.token",
             "tbl_kerani_kcs.email",
+            "tbl_kerani_kcs.no_sap",
             "tbl_kerani_kcs.id_kerani_askep",
             "tbl_kerani_kcs.nama_lengkap",
             "tbl_jabatan.jabatan",

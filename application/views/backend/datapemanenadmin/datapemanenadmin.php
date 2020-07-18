@@ -14,6 +14,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>No. SAP</th>
                         <th>K.Askep</th>
                         <th>K.Kcs</th>
                         <th>Photo Pemanen</th>
@@ -205,6 +206,7 @@
                     searchable:false,
                     orderable:false,
                 },
+                { data:'no_sap' },
                 { data:'keraniaskep' },
                 { data:'nama_lengkap' },
                 { data:'image' },

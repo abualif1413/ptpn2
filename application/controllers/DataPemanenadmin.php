@@ -107,6 +107,7 @@ class DataPemanenadmin extends MY_Controller {
                 "tbl_kebun.nama_kebun",
                 "tbl_afdeling.nama_afdeling",
                 "tbl_pemanen.nama_pemanen",
+                "tbl_pemanen.no_sap",
                 "tbl_pemanen.barcode");
             $select = array("tbl_pemanen.*","tbl_kebun.nama_kebun","tbl_afdeling.nama_afdeling","tbl_kerani_kcs.nama_lengkap","tbl_kerani_askep.nama_lengkap as keraniaskep");
             $join = array(
