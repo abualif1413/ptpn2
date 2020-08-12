@@ -73,8 +73,24 @@ class LapPremiPanenBulanan extends MY_Controller {
 					foreach ($ds->result() as $dsres) {
 						$premi_pemanen += $dsres->total_premi;
 					}
+
+					// Menghitung denda
+					$sql_denda = "
+						SELECT
+							SUM(kriteria.denda * denda.qty) AS denda
+						FROM
+							tbl_denda denda
+							LEFT JOIN tbl_kriteria_denda kriteria ON denda.id_kriteria_denda = kriteria.id
+						WHERE
+							tanggal = '" . $tgl . "' AND id_pemanen = '" . $data_pemanen["id_pemanen"] . "'
+					";
+					$ds_denda = $this->db->query($sql_denda);
+					$denda = 0;
+					foreach ($ds_denda->result() as $dsd) {
+						$denda += $dsd->denda;
+					}
 					
-					array_push($data_pemanen["bulanan"], $premi_pemanen);
+					array_push($data_pemanen["bulanan"], $premi_pemanen - $denda);
 				}
 				
 				$mandor = $data_pemanen["nama_mandor"];

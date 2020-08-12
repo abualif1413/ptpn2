@@ -16,7 +16,7 @@
 			margin-bottom: 0.5cm;
 			size: a4 landscape;
 		}
-		.laporan { border-collapse: collapse; font-size: 10pt; }
+		.laporan { border-collapse: collapse; font-size: 9pt; }
 		.laporan th, td { border-right: solid 1px #d8e3ff; padding: 1px 2px; border-left: solid 1px #d8e3ff; padding: 1px 2px; }
 		.laporan tbody tr:nth-last-child(1) td { border-bottom: solid 1px #d8e3ff; padding: 1px 2px; }
 		.laporan th { background-color: #F2F2F2; }
@@ -37,16 +37,18 @@
     			<th rowspan="2" align="right">BT</th>
     			<th rowspan="2" align="right" width="80px">Kg. TBS</th>
     			<th rowspan="2" align="right" width="80px">Kg. Brd</th>
-    			<th colspan="4" align="right">Premi TBS</th>
-    			<th rowspan="2" width="80px" align="right">Premi BRD</th>
-    			<th rowspan="2" width="80px" align="right">Premi Alat</th>
-    			<th rowspan="2" width="80px" align="right">Total Premi</th>
+    			<th colspan="4" align="right">P TBS</th>
+    			<th rowspan="2" width="75px" align="right">P BRD</th>
+    			<th rowspan="2" width="75px" align="right">P Alat</th>
+    			<th rowspan="2" width="75px" align="right">P Sblm Denda</th>
+    			<th rowspan="2" width="75px" align="right">Denda</th>
+    			<th rowspan="2" width="75px" align="right">P Stlh Denda</th>
     		</tr>
     		<tr>
-    			<th width="80px" align="right">P1</th>
-    			<th width="80px" align="right">P2</th>
-    			<th width="80px" align="right">P3</th>
-    			<th width="80px" align="right">Total</th>
+    			<th width="75px" align="right">P1</th>
+    			<th width="75px" align="right">P2</th>
+    			<th width="75px" align="right">P3</th>
+    			<th width="75px" align="right">Total</th>
     		</tr>
     	</thead>
     	<tbody>
@@ -66,6 +68,8 @@
 						echo "<td align='right'>" . number_format($data["brd_p"], 2) . "</td>";
 						echo "<td align='right'>" . number_format($data["premi_alat"], 2) . "</td>";
 						echo "<td align='right'>" . number_format($data["total_premi"], 2) . "</td>";
+						echo "<td align='right'>" . number_format($data["denda"], 2) . "</td>";
+						echo "<td align='right'>" . number_format($data["total_premi"] - $data["denda"], 2) . "</td>";
 					echo "</tr>";
 				}
     		?>

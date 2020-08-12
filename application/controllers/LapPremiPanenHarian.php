@@ -34,12 +34,24 @@ class LapPremiPanenHarian extends MY_Controller {
 					hasil.bt, hasil.kg_tbs, hasil.kg_brd,
 					hasil.tbs_p1, hasil.tbs_p2, hasil.tbs_p3, hasil.tbs_p4, (hasil.tbs_p1 + hasil.tbs_p2 + hasil.tbs_p3 + hasil.tbs_p4) AS hasil_tbs_p,
 					hasil.brd_p, hasil.premi_alat,
-					(hasil.tbs_p1 + hasil.tbs_p2 + hasil.tbs_p3 + hasil.tbs_p4 + hasil.brd_p + hasil.premi_alat) AS total_premi
+					(hasil.tbs_p1 + hasil.tbs_p2 + hasil.tbs_p3 + hasil.tbs_p4 + hasil.brd_p + hasil.premi_alat) AS total_premi,
+					denda.denda
 				FROM
 					tbl_pemanen pemanen
 					INNER JOIN tbl_mandor mandor ON pemanen.id_mandor = mandor.token
 					LEFT JOIN tbl_hasil_kg_per_pemanen hasil ON pemanen.id = hasil.id_pemanen AND tanggal = '" . $this->input->get("tanggal") . "'
 					LEFT JOIN tbl_blok blok ON hasil.id_blok = blok.id
+					LEFT JOIN (
+						SELECT
+							denda.id_pemanen, SUM(kriteria.denda * denda.qty) AS denda
+						FROM
+							tbl_denda denda
+							LEFT JOIN tbl_kriteria_denda kriteria ON denda.id_kriteria_denda = kriteria.id
+						WHERE
+							tanggal = '" . $this->input->get("tanggal") . "' AND id_mandor = '" . $this->input->get("id_mandor") . "'
+						GROUP BY
+							denda.id_pemanen
+					) denda ON pemanen.id = denda.id_pemanen
 				WHERE
 					mandor.id = '" . $this->input->get("id_mandor") . "'
 				ORDER BY

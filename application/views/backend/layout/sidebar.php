@@ -14,6 +14,7 @@
         <li class="sidebar-list-item"><a href="<?php echo site_url('DataPemanen')?>" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>Data Pemanen</span></a></li>
         <li class="sidebar-list-item"><a href="<?php echo site_url('Dataabsen020')?>" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>Data Absensi Pemanen</span></a></li>
         <li class="sidebar-list-item"><a href="<?php echo site_url('Dataizin')?>" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>Data Izin</span></a></li>
+        <li class="sidebar-list-item"><a href="<?php echo site_url('DataDenda')?>" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>Data Denda</span></a></li>
         <?php
         }else if($role=='k_askep'){?>
         <li class="sidebar-list-item"><a href="<?php echo site_url('Mandorkeraniaskep')?>" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>Data Mandor</span></a></li>
